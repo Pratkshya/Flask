@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} Blog Entry - Pikshy's Blog {% endblock %}
+{% block content %}
+    <form method="post">
+        <label for="title">Title: <input type="text" name="title" required></label>
+        <label for="body">Body: <textarea name="body" rows="5" placeholder="Write your blog here..." required></textarea></label>
+        <button type="submit">Blog Entry</button>
+    </form>
+    <hr>
+    <div class="blogContainer">
+        <h2>Pikshy's Blog</h2>
+        {% for blog in blogs %}
+            <div class="blogEntry">
+                <h3>Title: {{blog.title}}</h3>
+                <p>Date: {{blog.date.strftime('%Y-%m-%d %H:%M:%S')}}</p>
+                <p>{{blog.body | safe}}</p>   
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
